@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manikanta Kiran Golla | Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;800&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS for modern layout & design -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons for clean vector graphics -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                        sans: ['"Work Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        accent: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            950: '#090d16',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background-color: #090d16;
+            color: #f3f4f6;
+        }
+        
+        .font-tech {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Desktop vertical scroll snap effects */
+        @media (min-width: 1024px) {
+            .vertical-container {
+                display: block;
+                overflow-y: auto;
+                scroll-snap-type: y mandatory;
+                scroll-behavior: smooth;
+                height: 100vh;
+                width: 100vw;
+            }
+            .panel {
+                width: 100vw;
+                height: 100vh;
+                scroll-snap-align: start;
+                overflow-y: auto;
+            }
+        }
+
+        /* Smooth scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #090d16;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4f46e5;
+            border-radius: 10px;
+        }
+    </style>
+    
+    <!-- Initials SVG Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23090d16'/%3E%3Ctext x='50%25' y='65%25' font-family='monospace' font-size='50' font-weight='bold' fill='%236366f1' text-anchor='middle'%3EMK%3C/text%3E%3C/svg%3E">
+</head>
+<body class="overflow-x-hidden lg:overflow-hidden select-none">
+
+    <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 lg:left-8 lg:translate-x-0 lg:top-1/2 lg:-translate-y-1/2 z-50 flex lg:flex-col gap-3 bg-slate-900/80 backdrop-blur-md px-6 py-3 lg:px-3 lg:py-6 rounded-full border border-slate-800 shadow-2xl">
+        <a href="#hero" onclick="scrollToPanel(0)" class="nav-dot group relative p-2 text-indigo-400 hover:text-white transition-all duration-300" data-index="0">
+            <i data-lucide="user" class="w-5 h-5"></i>
+            <span class="absolute left-14 top-1/2 -translate-y-1/2 px-2 py-1 bg-indigo-600 text-xs rounded opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity hidden lg:inline font-tech">Intro</span>
+        </a>
+        <a href="#skills" onclick="scrollToPanel(1)" class="nav-dot group relative p-2 text-slate-500 hover:text-white transition-all duration-300" data-index="1">
+            <i data-lucide="cpu" class="w-5 h-5"></i>
+            <span class="absolute left-14 top-1/2 -translate-y-1/2 px-2 py-1 bg-indigo-600 text-xs rounded opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity hidden lg:inline font-tech">Skills</span>
+        </a>
+        <a href="#projects" onclick="scrollToPanel(2)" class="nav-dot group relative p-2 text-slate-500 hover:text-white transition-all duration-300" data-index="2">
+            <i data-lucide="folder-git" class="w-5 h-5"></i>
+            <span class="absolute left-14 top-1/2 -translate-y-1/2 px-2 py-1 bg-indigo-600 text-xs rounded opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity hidden lg:inline font-tech">Projects</span>
+        </a>
+        <a href="#timeline" onclick="scrollToPanel(3)" class="nav-dot group relative p-2 text-slate-500 hover:text-white transition-all duration-300" data-index="3">
+            <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+            <span class="absolute left-14 top-1/2 -translate-y-1/2 px-2 py-1 bg-indigo-600 text-xs rounded opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity hidden lg:inline font-tech">Timeline</span>
+        </a>
+        <a href="#contact" onclick="scrollToPanel(4)" class="nav-dot group relative p-2 text-slate-500 hover:text-white transition-all duration-300" data-index="4">
+            <i data-lucide="mail" class="w-5 h-5"></i>
+            <span class="absolute left-14 top-1/2 -translate-y-1/2 px-2 py-1 bg-indigo-600 text-xs rounded opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity hidden lg:inline font-tech">Contact</span>
+        </a>
+    </nav>
+
+    <main class="vertical-container w-full">
+
+        <!-- PANEL 1: Welcome / About Section -->
+        <section id="hero" class="panel min-h-screen relative flex items-center justify-center py-20 px-6 lg:px-32 bg-slate-950/20">
+            <!-- Background mesh grid -->
+            <div class="absolute inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+            
+            <div class="relative z-10 grid lg:grid-cols-12 gap-12 items-center max-w-7xl w-full">
+                <!-- Text elements -->
+                <div class="lg:col-span-7 flex flex-col justify-center space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 rounded-full w-max font-tech text-xs tracking-wider">
+                        <span class="flex h-2 w-2 relative">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+                        </span>
+                        PORTFOLIO RUNNING
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight">
+                        Hi, I am <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-indigo-500 to-purple-500">
+                            Manikanta Kiran
+                        </span>
+                    </h1>
+                    
+                    <p class="font-tech text-slate-400 text-lg">
+                        Computer Science & Engineering Student | Build ID: 23R11A0517
+                    </p>
+                    
+                    <p class="text-slate-300 leading-relaxed text-base max-w-xl">
+                        I enjoy building intelligent and user-focused software. Through projects in full-stack development, Generative AI, and computer vision, I have developed strong problem-solving skills and a drive to create technologies that deliver real-world impact.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <a href="#projects" onclick="scrollToPanel(2)" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-tech font-semibold flex items-center gap-2 shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/30 transition-all duration-300">
+                            Explore Projects <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/manikanta-kiran-golla-a13981297/" target="_blank" class="px-6 py-3 bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 hover:text-white rounded-lg font-tech flex items-center gap-2 transition-all duration-300">
+                            <i data-lucide="linkedin" class="w-4 h-4"></i> Contact Me
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200"></div>
+                        <div class="relative w-72 h-80 sm:w-80 sm:h-96 rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 p-2">
+                            <img src="photo.jpeg" alt="Manikanta Kiran Golla" class="w-full h-full object-cover rounded-xl grayscale hover:grayscale-0 transition duration-500">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PANEL 2: Skills Section -->
+        <section id="skills" class="panel min-h-screen relative flex items-center justify-center py-20 px-6 lg:px-32 bg-slate-950/40">
+            <div class="relative z-10 max-w-7xl w-full">
+                <div class="mb-12">
+                    <p class="font-tech text-indigo-400 text-sm tracking-widest uppercase">Expertise & Toolbox</p>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold mt-2 tracking-tight">Technical Architecture</h2>
+                </div>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Core & Languages -->
+                    <div class="bg-slate-900/60 border border-slate-800 p-6 rounded-xl hover:border-indigo-500/40 transition duration-300">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="p-2.5 bg-indigo-500/10 text-indigo-400 rounded-lg">
+                                <i data-lucide="code-2" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Programming Languages</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">Java</span>
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">Python</span>
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">C</span>
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">JavaScript</span>
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">HTML / CSS</span>
+                        </div>
+                    </div>
+
+                    <!-- Frameworks & Runtimes -->
+                    <div class="bg-slate-900/60 border border-slate-800 p-6 rounded-xl hover:border-indigo-500/40 transition duration-300">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="p-2.5 bg-indigo-500/10 text-indigo-400 rounded-lg">
+                                <i data-lucide="layers" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Web Frameworks</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">React</span>
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">Node.js</span>
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">Express.js</span>
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">FastAPI</span>
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">Flask</span>
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">Tailwind CSS</span>
+                        </div>
+                    </div>
+
+                    <!-- AI / ML Specialized -->
+                    <div class="bg-slate-900/60 border border-slate-800 p-6 rounded-xl hover:border-indigo-500/40 transition duration-300">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="p-2.5 bg-indigo-500/10 text-indigo-400 rounded-lg">
+                                <i data-lucide="brain-circuit" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">AI / ML Ecosystem</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">Generative AI</span>
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">Groq LLM</span>
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">YOLOv5</span>
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">Computer Vision</span>
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">PyTorch</span>
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">OpenCV</span>
+                        </div>
+                    </div>
+
+                    <!-- Databases -->
+                    <div class="bg-slate-900/60 border border-slate-800 p-6 rounded-xl hover:border-indigo-500/40 transition duration-300">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="p-2.5 bg-indigo-500/10 text-indigo-400 rounded-lg">
+                                <i data-lucide="database" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Databases & Query</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">SQL</span>
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">MongoDB</span>
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">PostgreSQL</span>
+                        </div>
+                    </div>
+
+                    <!-- Tools & Operations -->
+                    <div class="bg-slate-900/60 border border-slate-800 p-6 rounded-xl hover:border-indigo-500/40 transition duration-300">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="p-2.5 bg-indigo-500/10 text-indigo-400 rounded-lg">
+                                <i data-lucide="terminal" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Tools & Deployment</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">Git & GitHub</span>
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">Vercel</span>
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">Figma</span>
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">JDBC</span>
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">Swing</span>
+                        </div>
+                    </div>
+
+                    <!-- Core Computer Science -->
+                    <div class="bg-slate-900/60 border border-slate-800 p-6 rounded-xl hover:border-indigo-500/40 transition duration-300">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="p-2.5 bg-indigo-500/10 text-indigo-400 rounded-lg">
+                                <i data-lucide="binary" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Computer Science Core</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">DSA</span>
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">OOP</span>
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">DBMS</span>
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">Operating Systems</span>
+                            <span class="px-3 py-1.5 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-slate-300 font-tech">Algorithms</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PANEL 3: Projects Section -->
+        <section id="projects" class="panel min-h-screen relative flex items-center justify-center py-20 px-6 lg:px-32 bg-slate-950/20">
+            <div class="relative z-10 max-w-7xl w-full">
+                <div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4">
+                    <div>
+                        <p class="font-tech text-indigo-400 text-sm tracking-widest uppercase">My Creations</p>
+                        <h2 class="text-3xl sm:text-5xl font-extrabold mt-2 tracking-tight">Active Builds</h2>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Project 1 -->
+                    <div class="group relative bg-slate-900/40 border border-slate-800 rounded-2xl p-8 hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 bg-indigo-500/10 text-indigo-400 rounded-full font-tech text-xs">Full-Stack AI</span>
+                                <div class="flex gap-2">
+                                    <a href="https://github.com/manikanta-kiran-golla-a13981297" target="_blank" class="p-2 bg-slate-800 rounded-lg text-slate-400 hover:text-white transition-colors">
+                                        <i data-lucide="github" class="w-4 h-4"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-3 group-hover:text-indigo-400 transition-colors">AI Real Estate Platform</h3>
+                            <p class="text-slate-400 mb-6 text-sm leading-relaxed">
+                                Production-ready platform supporting 3,600+ listings. Features JWT security, PostgreSQL back-end services, Next.js frontend, and a Groq LLM-powered assistant for conversational property analytics.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800">
+                            <span class="px-2 py-1 bg-slate-950 text-slate-400 text-xs rounded font-tech">React</span>
+                            <span class="px-2 py-1 bg-slate-950 text-slate-400 text-xs rounded font-tech">FastAPI</span>
+                            <span class="px-2 py-1 bg-slate-950 text-slate-400 text-xs rounded font-tech">Groq LLM</span>
+                            <span class="px-2 py-1 bg-slate-950 text-slate-400 text-xs rounded font-tech">PostgreSQL</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="group relative bg-slate-900/40 border border-slate-800 rounded-2xl p-8 hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 bg-indigo-500/10 text-indigo-400 rounded-full font-tech text-xs">Computer Vision</span>
+                                <div class="flex gap-2">
+                                    <a href="https://github.com/manikanta-kiran-golla-a13981297" target="_blank" class="p-2 bg-slate-800 rounded-lg text-slate-400 hover:text-white transition-colors">
+                                        <i data-lucide="github" class="w-4 h-4"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-3 group-hover:text-indigo-400 transition-colors">Sign Language Recognition</h3>
+                            <p class="text-slate-400 mb-6 text-sm leading-relaxed">
+                                Real-time translation system using a custom YOLOv5 model, PyTorch, and OpenCV. Features lightweight Flask API, low latency live-camera inference, and web frontend UI framework.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800">
+                            <span class="px-2 py-1 bg-slate-950 text-slate-400 text-xs rounded font-tech">YOLOv5</span>
+                            <span class="px-2 py-1 bg-slate-950 text-slate-400 text-xs rounded font-tech">OpenCV</span>
+                            <span class="px-2 py-1 bg-slate-950 text-slate-400 text-xs rounded font-tech">PyTorch</span>
+                            <span class="px-2 py-1 bg-slate-950 text-slate-400 text-xs rounded font-tech">Flask</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="group relative bg-slate-900/40 border border-slate-800 rounded-2xl p-8 hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 bg-indigo-500/10 text-indigo-400 rounded-full font-tech text-xs">MERN E-Commerce</span>
+                                <div class="flex gap-2">
+                                    <a href="https://github.com/manikanta-kiran-golla-a13981297" target="_blank" class="p-2 bg-slate-800 rounded-lg text-slate-400 hover:text-white transition-colors">
+                                        <i data-lucide="github" class="w-4 h-4"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-3 group-hover:text-indigo-400 transition-colors">G.A.S. Store Platform</h3>
+                            <p class="text-slate-400 mb-6 text-sm leading-relaxed">
+                                Highly responsive full-stack shopping client. Integrates flexible authentication middleware, administrative product/inventory management dashboards, and robust database modeling on MongoDB.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800">
+                            <span class="px-2 py-1 bg-slate-950 text-slate-400 text-xs rounded font-tech">MongoDB</span>
+                            <span class="px-2 py-1 bg-slate-950 text-slate-400 text-xs rounded font-tech">Express.js</span>
+                            <span class="px-2 py-1 bg-slate-950 text-slate-400 text-xs rounded font-tech">React.js</span>
+                            <span class="px-2 py-1 bg-slate-950 text-slate-400 text-xs rounded font-tech">Node.js</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 4 -->
+                    <div class="group relative bg-slate-900/40 border border-slate-800 rounded-2xl p-8 hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 bg-indigo-500/10 text-indigo-400 rounded-full font-tech text-xs">Desktop Client</span>
+                                <div class="flex gap-2">
+                                    <a href="https://github.com/manikanta-kiran-golla-a13981297" target="_blank" class="p-2 bg-slate-800 rounded-lg text-slate-400 hover:text-white transition-colors">
+                                        <i data-lucide="github" class="w-4 h-4"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-3 group-hover:text-indigo-400 transition-colors">EduTrack Student App</h3>
+                            <p class="text-slate-400 mb-6 text-sm leading-relaxed">
+                                Java Swing application utilizing structured databases via JDBC. Houses attendance modules, instant academic progress reporting, and grade calculations dynamically in modern workspace windows.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800">
+                            <span class="px-2 py-1 bg-slate-950 text-slate-400 text-xs rounded font-tech">Java Swing</span>
+                            <span class="px-2 py-1 bg-slate-950 text-slate-400 text-xs rounded font-tech">JDBC</span>
+                            <span class="px-2 py-1 bg-slate-950 text-slate-400 text-xs rounded font-tech">SQL Server</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PANEL 4: Timeline Panel (Education, Hackathons & Credentials) -->
+        <section id="timeline" class="panel min-h-screen relative flex items-center justify-center py-20 px-6 lg:px-32 bg-slate-950/40">
+            <div class="relative z-10 max-w-7xl w-full">
+                <div class="mb-12">
+                    <p class="font-tech text-indigo-400 text-sm tracking-widest uppercase">History</p>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold mt-2 tracking-tight">Timeline & Accomplishments</h2>
+                </div>
+
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <!-- Column 1: Academic Milestones -->
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-2 mb-4">
+                            <i data-lucide="book-open" class="text-indigo-400 w-5 h-5"></i>
+                            <h3 class="text-xl font-bold font-tech">Education</h3>
+                        </div>
+                        <div class="border-l border-slate-800 pl-4 space-y-6">
+                            <div class="relative">
+                                <span class="absolute -left-[21px] top-1.5 w-3 h-3 bg-indigo-500 rounded-full"></span>
+                                <h4 class="font-bold">B.Tech - CSE</h4>
+                                <p class="text-slate-400 text-sm">Geethanjali College of Eng & Tech</p>
+                                <span class="text-indigo-400 text-xs font-tech">2023 – 2027 • CGPA: 7.84</span>
+                            </div>
+                            <div class="relative">
+                                <span class="absolute -left-[21px] top-1.5 w-3 h-3 bg-slate-700 rounded-full"></span>
+                                <h4 class="font-bold">Intermediate (MPC)</h4>
+                                <p class="text-slate-400 text-sm">Narayana Junior College</p>
+                                <span class="text-indigo-400 text-xs font-tech">2021 – 2023 • Percent: 78%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Hackathon Achievements -->
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-2 mb-4">
+                            <i data-lucide="award" class="text-indigo-400 w-5 h-5"></i>
+                            <h3 class="text-xl font-bold font-tech">Hackathons</h3>
+                        </div>
+                        <div class="border-l border-slate-800 pl-4 space-y-6">
+                            <div class="relative">
+                                <span class="absolute -left-[21px] top-1.5 w-3 h-3 bg-green-500 rounded-full"></span>
+                                <h4 class="font-bold">Geenovate Hackathon 2025</h4>
+                                <p class="text-slate-400 text-sm">AI Smart Meter Innovation</p>
+                                <span class="text-green-400 text-xs font-tech">Shortlisted Internal Round</span>
+                            </div>
+                            <div class="relative">
+                                <span class="absolute -left-[21px] top-1.5 w-3 h-3 bg-green-500 rounded-full"></span>
+                                <h4 class="font-bold">Rampage Hackathon 2025</h4>
+                                <p class="text-slate-400 text-sm">AI Insurance Fraud Detection</p>
+                                <span class="text-green-400 text-xs font-tech">Shortlisted Internal Round</span>
+                            </div>
+                            <div class="relative">
+                                <span class="absolute -left-[21px] top-1.5 w-3 h-3 bg-green-500 rounded-full"></span>
+                                <h4 class="font-bold">Smart India Hackathon 2024</h4>
+                                <p class="text-slate-400 text-sm">Blockchain & Cyber News Platform</p>
+                                <span class="text-green-400 text-xs font-tech">Shortlisted Internal Round</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 3: Certifications list -->
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-2 mb-4">
+                            <i data-lucide="badge-check" class="text-indigo-400 w-5 h-5"></i>
+                            <h3 class="text-xl font-bold font-tech">Certificates</h3>
+                        </div>
+                        <div class="grid grid-cols-1 gap-2 max-h-[300px] overflow-y-auto pr-2">
+                            <div class="p-3 bg-slate-900/40 border border-slate-800/80 rounded-lg">
+                                <p class="font-bold text-sm">Copado AI Certification</p>
+                            </div>
+                            <div class="p-3 bg-slate-900/40 border border-slate-800/80 rounded-lg">
+                                <p class="font-bold text-sm">Cantilever Internship</p>
+                                <p class="text-xs text-slate-500">MERN Stack Development</p>
+                            </div>
+                            <div class="p-3 bg-slate-900/40 border border-slate-800/80 rounded-lg">
+                                <p class="font-bold text-sm">Deloitte Data Analytics</p>
+                                <p class="text-xs text-slate-500">Industry Simulation</p>
+                            </div>
+                            <div class="p-3 bg-slate-900/40 border border-slate-800/80 rounded-lg">
+                                <p class="font-bold text-sm">NPTEL Elite Certificate</p>
+                                <p class="text-xs text-slate-500">Python Programming</p>
+                            </div>
+                            <div class="p-3 bg-slate-900/40 border border-slate-800/80 rounded-lg">
+                                <p class="font-bold text-sm">JPMorgan Chase & Co.</p>
+                                <p class="text-xs text-slate-500">Software Engineering Forage</p>
+                            </div>
+                            <div class="p-3 bg-slate-900/40 border border-slate-800/80 rounded-lg">
+                                <p class="font-bold text-sm">Oracle OOP & DBMS</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PANEL 5: Contact Section -->
+        <section id="contact" class="panel min-h-screen relative flex items-center justify-center py-20 px-6 lg:px-32 bg-slate-950/20">
+            <div class="relative z-10 max-w-7xl w-full">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <p class="font-tech text-indigo-400 text-sm tracking-widest uppercase">Connection Hub</p>
+                        <h2 class="text-3xl sm:text-5xl font-extrabold mt-2 mb-6 tracking-tight">Let's Build Something Great</h2>
+                        <p class="text-slate-300 leading-relaxed mb-8 max-w-md text-base">
+                            I am open to summer internships, direct software development contracts, and innovative Generative AI collaboration teams. Let's reach out.
+                        </p>
+
+                        <!-- Social Coding Platforms and channels -->
+                        <div class="space-y-4">
+                            <h3 class="font-tech text-xs text-slate-500 uppercase tracking-wider mb-2">Coding Ecosystem Profiles</h3>
+                            <div class="flex flex-wrap gap-3">
+                                <a href="https://github.com/manikanta-kiran-golla-a13981297" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-slate-900 border border-slate-800 rounded-lg hover:border-indigo-400 transition">
+                                    <i data-lucide="github" class="w-4 h-4 text-indigo-400"></i>
+                                    <span class="font-tech text-sm text-slate-300">GitHub</span>
+                                </a>
+                                <a href="https://linkedin.com/in/manikanta-kiran-golla-a13981297/" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-slate-900 border border-slate-800 rounded-lg hover:border-indigo-400 transition">
+                                    <i data-lucide="linkedin" class="w-4 h-4 text-indigo-400"></i>
+                                    <span class="font-tech text-sm text-slate-300">LinkedIn</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Direct Connect Panel -->
+                    <div class="bg-slate-900/40 border border-slate-800 p-8 rounded-2xl">
+                        <h3 class="text-2xl font-bold mb-6">Contact Channels</h3>
+                        
+                        <div class="space-y-6">
+                            <!-- Direct Email -->
+                            <a href="mailto:23r11a0517@gcet.edu.in" class="flex items-start gap-4 p-4 rounded-xl bg-slate-950/40 border border-slate-800/60 hover:border-indigo-500/40 transition group">
+                                <div class="p-3 bg-indigo-500/10 text-indigo-400 rounded-lg group-hover:bg-indigo-600 group-hover:text-white transition">
+                                    <i data-lucide="mail" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <span class="block text-xs font-tech text-slate-500 uppercase">Primary Email</span>
+                                    <span class="block font-medium text-slate-200 mt-0.5">23r11a0517@gcet.edu.in</span>
+                                </div>
+                            </a>
+
+                            <!-- Direct Phone -->
+                            <a href="tel:+919502612126" class="flex items-start gap-4 p-4 rounded-xl bg-slate-950/40 border border-slate-800/60 hover:border-indigo-500/40 transition group">
+                                <div class="p-3 bg-indigo-500/10 text-indigo-400 rounded-lg group-hover:bg-indigo-600 group-hover:text-white transition">
+                                    <i data-lucide="phone" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <span class="block text-xs font-tech text-slate-500 uppercase">Calling / Whatsapp</span>
+                                    <span class="block font-medium text-slate-200 mt-0.5">+91 9502612126</span>
+                                </div>
+                            </a>
+
+                            <!-- Location Info -->
+                            <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-950/40 border border-slate-800/60">
+                                <div class="p-3 bg-indigo-500/10 text-indigo-400 rounded-lg">
+                                    <i data-lucide="map-pin" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <span class="block text-xs font-tech text-slate-500 uppercase">Current Station</span>
+                                    <span class="block font-medium text-slate-200 mt-0.5">Hyderabad, Telangana</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Initialize lucide icons vector replacements
+        lucide.createIcons();
+
+        // Control Panel vertical snaps and responsive transitions
+        const container = document.querySelector('.vertical-container');
+        const panels = document.querySelectorAll('.panel');
+        const dots = document.querySelectorAll('.nav-dot');
+
+        function scrollToPanel(index) {
+            const targetPanel = panels[index];
+            if (window.innerWidth >= 1024) {
+                // Smooth vertical snap-slide on desktops
+                container.scrollTo({
+                    top: targetPanel.offsetTop,
+                    behavior: 'smooth'
+                });
+            } else {
+                // Smooth vertical scrolling for smaller devices
+                targetPanel.scrollIntoView({ behavior: 'smooth' });
+            }
+            updateActiveDot(index);
+        }
+
+        function updateActiveDot(index) {
+            dots.forEach((dot, idx) => {
+                if (parseInt(dot.getAttribute('data-index')) === index) {
+                    dot.classList.add('text-indigo-400', 'scale-110');
+                    dot.classList.remove('text-slate-500');
+                } else {
+                    dot.classList.remove('text-indigo-400', 'scale-110');
+                    dot.classList.add('text-slate-500');
+                }
+            });
+        }
+
+        // Active panel tracker logic for unified vertical scroll mapping
+        function handleScroll() {
+            const scrollPos = window.innerWidth >= 1024 ? container.scrollTop : window.scrollY;
+            let activeIdx = 0;
+            panels.forEach((panel, idx) => {
+                const panelTop = window.innerWidth >= 1024 ? panel.offsetTop : panel.getBoundingClientRect().top + window.scrollY;
+                if (scrollPos >= panelTop - window.innerHeight / 2) {
+                    activeIdx = idx;
+                }
+            });
+            updateActiveDot(activeIdx);
+        }
+
+        // Listeners for multi-platform scroll tracking
+        if (window.innerWidth >= 1024) {
+            container.addEventListener('scroll', handleScroll);
+        } else {
+            window.addEventListener('scroll', handleScroll);
+        }
+
+        // Recalculate listener types on layout updates or resizing
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024) {
+                window.removeEventListener('scroll', handleScroll);
+                container.addEventListener('scroll', handleScroll);
+            } else {
+                container.removeEventListener('scroll', handleScroll);
+                window.addEventListener('scroll', handleScroll);
+            }
+        });
+
+        // Initialize starting state variables
+        updateActiveDot(0);
+    </script>
+</body>
+</html>
